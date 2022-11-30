@@ -62,3 +62,16 @@ jobs:
           file: "slides/presentation.pdf"
           tags: false
           draft: false
+
+      - name: 🏛️ Archive codes folder (recursive, quiet)
+        run: zip -r -q codes.zip codes
+
+      # https://github.com/xresloader/upload-to-github-release
+      - name: 🏷️ Release codes.zip
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "codes.zip"
+          tags: false
+          draft: false
