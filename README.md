@@ -1,3 +1,8 @@
 # Corso Machine Learning
 
-Scaricare l'ultimo documento [presentation.pdf](../../releases/latest/download/presentation.pdf) (aprire con Adobe Reader per visualizzare le animazioni)
+Puoi scaricare le slides del corso da qui:<br>
+[presentation.pdf](../../releases/latest/download/presentation.pdf) (aprire con Adobe Acrobat Reader per visualizzare le animazioni)
+
+Puoi scaricare i codici R utilizzati a lezione da qui:<br>
+[codes.zip](../../releases/latest/download/codes.zip)
+ 
