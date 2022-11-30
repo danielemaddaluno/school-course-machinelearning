@@ -1,3 +1,3 @@
 # Corso Machine Learning
 
-Download the latest [presentation.pdf](../../releases/latest/download/presentation.pdf)
+Scaricare l'ultimo documento [presentation.pdf](../../releases/latest/download/presentation.pdf) (aprire con Adobe Reader per visualizzare le animazioni)
