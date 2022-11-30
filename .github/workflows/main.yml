@@ -18,6 +18,7 @@ jobs:
       - name: 📜 Pdflatex presentation n1
         uses: dante-ev/latex-action@2021-A
         with:
+          working_directory: slides
           root_file: presentation.tex
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
@@ -30,12 +31,14 @@ jobs:
       - name: 📜 Pdflatex presentation n2
         uses: dante-ev/latex-action@2021-A
         with:
+          working_directory: slides
           root_file: presentation.tex
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
       - name: 📜 Pdflatex presentation n3
         uses: dante-ev/latex-action@2021-A
         with:
+          working_directory: slides
           root_file: presentation.tex
           compiler: pdflatex
           args: -interaction=nonstopmode -shell-escape
@@ -56,6 +59,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          file: "presentation.pdf"
+          file: "slides/presentation.pdf"
           tags: false
           draft: false

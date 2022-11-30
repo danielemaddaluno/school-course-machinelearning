@@ -1,0 +1,262 @@
+
+%============================================================
+%============================================================
+%============================================================
+\section[Derivato 1]{Derivato di tre sottostanti con barriere}
+
+%------------------------------------------------------------
+%------------------------------------------------------------
+%------------------------------------------------------------
+
+\subsection[Il dataset]{Il dataset}
+\begin{frame}
+	
+	\frametitle{0.1 Il Dataset}
+	
+	\begin{block}{Il dataset ``serie\_storiche.xlsx'':}
+
+		Il dataset contenuto in ``serie\_storiche.xlsx'' comprende i prezzi giornalieri di chiusura di mercato per 7 titoli azionari per il periodo che va dal 18/Feb/2010 al 14/Feb/2011.\\
+		
+		\begin{itemize}
+			\item EXXON MOBIL CORP
+			\item GENERAL ELECTRIC CO
+			\item CITIGROUP INC
+			\item MICROSOFT CORP
+			\item BANK OF AMERICA CORP
+			\item BP PLC	
+			\item HSBC HOLDINGS PLC
+		\end{itemize}
+
+		
+	\end{block}
+
+\end{frame}
+
+
+\begin{frame}
+	
+	\begin{block}{Tre azioni del dataset costituiscono i sottostanti del derivato preso in considerazione:}
+		\begin{itemize}
+			\item Sottostante 1: CITIGROUP INC
+			\item Sottostante 2: BANK OF AMERICA CORP
+			\item Sottostante 3: BP PLC
+		\end{itemize}
+
+	\end{block}
+	
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=11cm]{images/99_old_misuraca_trash/assets/dataset.png}
+	\end{figure}
+\end{frame}
+
+
+\subsection[I rendimenti]{I rendimenti}
+\begin{frame}
+
+	\frametitle{0.2 I rendimenti}
+	
+	\begin{block}{Calcolo dei rendimenti logaritmici giornalieri:}
+		Indichiamo con $C_{i,t}$ il dato disponibile del prezzo di chiusura di mercato della azione $i$ in data $t$.\\
+		Calcoliamo i rendimenti giornalieri logaritmici per ognuno dei tre asset, inserendo i risultati all'interno di una tabella che chiamiamo ``Returns''.
+		$$R_{i,t} = log(C_{i,t}/C_{i,t-1})$$
+		
+	\end{block}
+	
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=5cm]{images/99_old_misuraca_trash/assets/returns.png}
+	\end{figure}
+\end{frame}
+	
+
+\subsection[Le volatilitÃ  storiche e le barriere]{Le volatilitÃ  storiche e le barriere}
+\begin{frame}
+	\frametitle{0.3 Le volatilitÃ  e le barriere}
+
+	\begin{block}{Calcolo delle volatilitÃ  storiche e delle barriere:}
+		Calcoliamo la \textcolor{red}{volatilitÃ } per ogni titolo $i$ a partire dai ritorni come segue:
+		$$Vol\_i = STDEV(Returns[nome\_titolo\_i])*SQRT(252)$$
+		Calcoliamo le \textcolor{red}{barriere} per ogni titolo $i$ a partire dai prezzi attuali:
+		$$Threshold\_i = Cella\_S0_{i}*Cella\_Barrier$$
+	\end{block}
+	
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=4.5cm]{images/99_old_misuraca_trash/Subsection1Part1/options.png}
+	\end{figure}
+
+\end{frame}
+
+\subsection[Pricing semplice]{Pricing semplice}
+\begin{frame}
+	\frametitle{1. Il pricing semplice con Bonus = 20 e Barrier = 140\%}
+
+	\begin{block}{La simulazione Monte Carlo:}
+		Per calcolare il prezzo del derivato considerato sono state scritte quattro funzioni:
+		\begin{itemize}
+			\item \textbf{derivative\_price}: al suo interno lancia un numero significativo di simulazioni (pari a n\_sim) al termine delle quali calcola il prezzo come una media scontata dei payoff a scadenza. 
+			\item \textbf{derivative\_simulation}: lancia una singola simulazione dell'evoluzione dei prezzi dei sottostanti. Al termine restituisce una serie di informazioni tra le quali il prezzo del derivato a scadenza.
+			\item \textbf{norm}: si occupa di generare campioni da una distribuzione normale con una certa media e deviazione standard. Viene utilizzata all'interno della funzione derivative\_simulation per generare degli shocks sui prezzi per ogni step di campionamento. 
+			\item \textbf{boxM}: genera numeri random provenienti dalla distribuzione $\mathcal{N}(0, 1)$.
+		\end{itemize}
+	\end{block}
+
+\end{frame}
+
+
+
+\begin{frame}{Gestione della correlazione}
+\begin{block}
+
+Per gestire la correlazione tra i diversi sottostanti si Ã¨ fatto quanto segue:
+\begin{enumerate}
+
+\item Stima della matrice di varianza-covarianza ($\Sigma$)
+\item Decomposizione della matrice $\Sigma$ con Cholesky ($L$)
+\item Simulazione dei sottostanti come $ d\textbf{W}^{*} = Ld\textbf{W} $ dove $dW_i= \sigma_i \cdot dZ_i$
+\end{enumerate}
+
+$$
+L=
+\begin{pmatrix} 1 & 0 & 0 \\  
+\rho_{1,2} & \sqrt{1 - \rho^2_{1,2}} & 0 \\ 
+\rho_{1,3} & \sqrt{\rho^2_{2,3} - \rho^2_{1,3}} &\sqrt{1 - \rho^2_{2,3}} \end{pmatrix}
+$$
+
+$$ 
+\begin{cases} dS_{1} = S_{1} e^{(r - \frac{\sigma_{1}^2}{2})\Delta t + dW_{1}} \\ 
+dS_{2} = S_{2} e^{(r - \frac{\sigma_{2}^2}{2})\Delta t + \rho_{1,2}dW_{1} + \sqrt{1 - \rho^2_{1,2}} dW_{2}}  \\ 
+dS_{3} = S_{3} e^{(r - \frac{\sigma_{3}^2}{2})\Delta t + \rho_{1,3}dW_{1} + \sqrt{\rho^2_{2,3} - \rho^2_{1,3}} dW_{3} \sqrt{1 - \rho^2_{2,3}} dW_{3}}  
+\end{cases}
+$$
+
+\end{block}
+\end{frame}
+
+
+
+
+
+\begin{frame}{Estratto di \color{black}\Verb+Es\_1\_Part\_1+}
+	\inputminted[fontsize=\tiny]{vb.net}{images/99_old_misuraca_trash/assets/part1.txt}
+\end{frame} 
+
+\begin{frame}{Estratto della funzione \color{black}\Verb+derivative\_price+}
+	\inputminted[fontsize=\tiny]{vb.net}{images/99_old_misuraca_trash/assets/derivative_price.txt}
+\end{frame}
+
+\begin{frame}{Estratto della funzione \color{black}\Verb+derivative\_simulation+}
+	\inputminted[fontsize=\tiny]{vb.net}{images/99_old_misuraca_trash/assets/derivative_simulation.txt}
+\end{frame}
+
+\begin{frame}{Estratto della funzione \color{black}\Verb+derivative\_simulation+}
+	\inputminted[fontsize=\tiny]{vb.net}{images/99_old_misuraca_trash/assets/derivative_simulation1.txt}
+\end{frame}
+
+
+
+\begin{frame}
+	\begin{block}{Prezzo del derivato:}
+		Dati gli input mostrati in figura in verde chiaro, il prezzo del derivato calcolato tramite simulazione Monte Carlo risulta essere pari a $\mathbf{\sim10.61}$\textbf{\textcurrency}.
+	\end{block}
+	 
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[angle=0,width=\linewidth]{images/99_old_misuraca_trash/Subsection1Part1/pricing_simple.png}
+	\end{figure}
+\end{frame}
+
+\subsection[Pricing al variare del Bonus (K)]{Pricing al variare del Bonus (K)}
+\begin{frame}
+	\frametitle{2. Il pricing al variare del Bonus (K)}
+	\begin{block}{Prezzo del derivato al variare del Bonus (K):}
+		Dati gli input mostrati in figura in verde chiaro, al variare del Bonus (K) da 2 a 60 con un passo di 2, l'evoluzione del prezzo del derivato calcolato tramite simulazione Monte Carlo Ã¨ mostrata in figura.
+		Si puÃ² osservare che al crescere del Bonus (K) il prezzo tende ad aumentare.
+	\end{block}
+	
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=9cm]{images/99_old_misuraca_trash/Subsection1Part2/pricing_K.png}
+	\end{figure}
+\end{frame}
+
+\begin{frame}{Estratto di \color{black}\Verb+Es\_1\_Part\_2+}
+	\inputminted[fontsize=\tiny]{vb.net}{images/99_old_misuraca_trash/assets/part2.txt}
+\end{frame} 
+
+\begin{frame}{Estratto della funzione \color{black}\Verb+plotChart+}
+	\inputminted[fontsize=\tiny]{vb.net}{images/99_old_misuraca_trash/assets/plotChart.txt}
+\end{frame}
+ 
+\subsection[Pricing al variare del livello della barriera]{Pricing al variare del livello della barriera}
+\begin{frame}
+	\frametitle{3. Il pricing al variare della barriera}
+
+	\begin{block}{Prezzo del derivato al variare della barriera:}
+		Dati gli input mostrati in figura in verde chiaro, per le 5 barriere prese in considerazione (da 110\% a 150\% con un passo del 10\%), si Ã¨ calcolata l'evoluzione del prezzo del derivato e il numero di occorrenze di ciascuno dei tre eventi bonus.
+	\end{block}
+
+	\begin{figure}[!htbp]
+		\centering
+		\includegraphics[width=5cm]{images/99_old_misuraca_trash/Subsection1Part3/options.png}
+		%\caption{ENEL Histfit Normale}
+		%\label{Enel_HistFit_Normal} 
+	\end{figure}
+
+\end{frame}
+
+\begin{frame}{Estratto di \color{black}\Verb+Es\_1\_Part\_3+}
+	\inputminted[fontsize=\tiny]{vb.net}{images/99_old_misuraca_trash/assets/part3.txt}
+\end{frame} 
+
+
+\begin{frame}
+	\begin{columns}
+	
+		\column{0.5\linewidth}
+		\begin{figure}[!htbp]
+			\centering
+			\includegraphics[angle=0,width=\linewidth]{images/99_old_misuraca_trash/Subsection1Part3/barriers.png}
+			%\caption{ENEL Histfit Normale}
+			%\label{Enel_HistFit_Normal} 
+		\end{figure}
+		
+		\column{0.5\linewidth}
+		\begin{figure}[!htbp]
+			\centering
+			\includegraphics[angle=0,width=\linewidth]{images/99_old_misuraca_trash/Subsection1Part3/prices.png}
+			%\caption{ENEL QQ-Plot Normale}
+			%\label{Enel_QQ_Plot_Normal} 
+		\end{figure}
+	
+	\end{columns} 
+\end{frame}
+
+\begin{frame} 
+
+	\begin{block}{Percentuale evento bonus al variare della barriera:}
+		Si puÃ² quindi osservare come al variare della barriera cambi la probabilitÃ  associata al verificarsi di ciascuno dei tre eventi bonus.\\
+		Le due figure mostrate rappresentano questo concetto attraverso due tipologie di grafico distinte.
+	\end{block}
+
+	\begin{columns}
+	
+		\column{0.5\linewidth}
+		\begin{figure}[!htbp]
+			\centering
+			\includegraphics[angle=0,width=\linewidth]{images/99_old_misuraca_trash/Subsection1Part3/proportions_1.png}
+			%\caption{ENEL Histfit Normale}
+			%\label{Enel_HistFit_Normal} 
+		\end{figure}
+		
+		\column{0.5\linewidth}
+		\begin{figure}[!htbp]
+			\centering
+			\includegraphics[angle=0,width=\linewidth]{images/99_old_misuraca_trash/Subsection1Part3/proportions_2.png}
+			%\caption{ENEL QQ-Plot Normale}
+			%\label{Enel_QQ_Plot_Normal} 
+		\end{figure}
+	
+	\end{columns}
+\end{frame}
