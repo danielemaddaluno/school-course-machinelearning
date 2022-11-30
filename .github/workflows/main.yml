@@ -1,0 +1,61 @@
+name: CompileLaTeX
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 🛒 Checkout repository
+        uses: actions/checkout@v2.5.0
+      
+      # https://github.com/dante-ev/latex-action check "real-document" section
+      - name: 📜 Pdflatex presentation n1
+        uses: dante-ev/latex-action@2021-A
+        with:
+          root_file: presentation.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+      # - name: 📜 bibtex presentation
+      #   uses: dante-ev/latex-action@2021-A
+      #   with:
+      #     root_file: presentation.aux
+      #     compiler: bibtex
+      #     args: 
+      - name: 📜 Pdflatex presentation n2
+        uses: dante-ev/latex-action@2021-A
+        with:
+          root_file: presentation.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+      - name: 📜 Pdflatex presentation n3
+        uses: dante-ev/latex-action@2021-A
+        with:
+          root_file: presentation.tex
+          compiler: pdflatex
+          args: -interaction=nonstopmode -shell-escape
+
+      # https://github.com/dev-drprasad/delete-older-releases
+      - name: 🗑️ Delete older release
+        uses: dev-drprasad/delete-older-releases@v0.2.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          keep_latest: 2
+          delete_tags: true
+          #delete_tag_pattern: beta # defaults to ""
+      
+      # https://github.com/xresloader/upload-to-github-release
+      - name: 🏷️ Release file .pdf
+        uses: xresloader/upload-to-github-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: "presentation.pdf"
+          tags: false
+          draft: false

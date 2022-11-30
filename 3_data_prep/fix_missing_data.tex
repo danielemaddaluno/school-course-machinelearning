@@ -1,0 +1,32 @@
+\subsection[Sistemare i dati mancanti]{Sistemare i dati mancanti}
+
+\begin{frame}
+	\frametitle{{\color{GradientDescentDiagramGreen}Sistemare i dati mancanti}}
+
+	%\begin{block}{}
+		La presenza di un \textbf{esempio incompleto} rende impossibile connettere tutti i segnali all'interno delle feature e tra feature diverse. Inoltre, se ci sono valori mancanti per molti algoritmi risulta impossibile riuscire ad apprendere durante la fase di addestramento.
+		\newlinedouble
+		Di conseguenza, è necessario \textbf{sostituire tutti i valori mancanti} della matrice di dati con valori adatti a fare in modo che l’algoritmo di apprendimento funzioni correttamente.
+		\newlinedouble
+		I \textbf{motivi} che causano la mancanza di valori possono essere i \textbf{più disparati}.\\
+		Per gestire in modo efficace i dati mancanti, le strategie possibili sono diverse e possono cambiare se dovete gestire valori mancanti all’interno di feature quantitative o qualitative.
+	%\end{block}
+	
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{{\color{GradientDescentDiagramGreen}Sistemare i dati mancanti}: strategie di sostituzione}
+
+	%\begin{block}{}
+		Di seguito sono riportate alcune delle strategie più comuni per la gestione dei dati mancanti:
+		\begin{itemize}
+			\item sostituire i valori mancanti con una \textbf{costante calcolata come il valore medio o mediano} (per le categoriche andrà fornito un valore categorico)
+			\item sostituire i valori mancanti con un \textbf{valore all’esterno a quello del normale range} di valori della feature (ideale da adoperare con gli algoritmi basati sugli alberi di decisione e variabili qualitative)
+			\item sostituire i valori mancanti \textbf{con 0}, che funziona bene con i modelli di regressione e le variabili standardizzate (anche qualitative binarie)
+			\item \textbf{interpolare i valori} mancanti quando fanno parte di una serie di valori legati al tempo
+			\item \textbf{predire il valore} utilizzando le informazioni presenti in altre feature che fungono da predittori (ma non utilizzare mai la variabile di risposta)
+		\end{itemize}
+	%\end{block}
+	
+\end{frame}

@@ -1,0 +1,202 @@
+\newlength{\mylenxyz}\setlength{\mylenxyz}{2mm}
+
+% Definizione di nuovi comandi
+
+% My commands
+\newcommand{\newlinedouble}{\\~\\}
+\newcommand{\newlinetriple}{\\~\\~\\}
+\newcommand{\ml}{Machine Learning }
+\newcommand{\mlbold}{\textbf{\ml}}
+% https://tex.stackexchange.com/a/164665/69362
+\newcommand\undermat[2]{% http://tex.stackexchange.com/a/102468/5764
+  \makebox[0pt][l]{$\smash{\underbrace{\phantom{%
+    \begin{matrix}#2\end{matrix}}}_{\text{$#1$}}}$}#2}
+
+% https://tex.stackexchange.com/questions/249616/tex-question-about-double-underlining-in-math-mode
+\def\doubleunderline#1{\underline{\underline{#1}}}
+
+
+% Useful math commands
+
+\newcommand{\rr}[1]{\textcolor{red}{\texttt{#1}}}
+\newcommand{\mrr}[1]{\mbox{\textcolor{red}{\texttt{#1}}}}
+\newcommand{\tg}[1]{\textcolor{green}{\textit{#1}}}
+
+\newcommand{\bb}[1]{\textbf{#1}}
+\newcommand{\ii}[1]{\textit{#1}}
+\newcommand{\xt}[1]{\texttt{#1}}
+\newcommand{\traccia}[1]{\ensuremath{\mbox{{\textup{traccia}}}(#1)}}
+\newcommand{\rango}[1]{\ensuremath{\mbox{{\textup{rango}}}(#1)}}
+\renewcommand{\vec}[1]{\ensuremath{\mbox{{\textup{vec}}}(#1)}}
+\newcommand{\num}{\ensuremath{\mbox{{\textup{num}}}}}
+\newcommand{\prob}{\ensuremath{\mbox{{\textup{Prob}}}}}
+\newcommand{\E}{\ensuremath{\mbox{{\textup{E}}}}}
+\newcommand{\Var}{\ensuremath{\mbox{{\textup{Var}}}}}
+\newcommand{\se}{\ensuremath{\mbox{{\textup{SE}}}}}
+\newcommand{\Cov}{\ensuremath{\mbox{{\textup{Cov}}}}}
+\newcommand{\Corr}{\ensuremath{\mbox{{\textup{Corr}}}}}
+\newcommand{\plim}{\ensuremath{\mbox{p}\!\lim}}
+\newcommand{\longlongrightarrow}{\ensuremath{-\!\!-\!\!\!\longrightarrow}}
+\newcommand{\diag}{\ensuremath{\mbox{diag}}}
+\newcommand{\mbA}{\mathbf{A}}
+\newcommand{\mbB}{\mathbf{B}}
+\newcommand{\wmbB}{\mathbf{\widehat{B}}}
+\newcommand{\smbB}{\mathbf{\scriptstyle B}}
+\newcommand{\swmbB}{\mathbf{\scriptstyle \widehat{B}}}
+\newcommand{\mbC}{\mathbf{C}}
+\newcommand{\smbC}{\mathbf{\scriptstyle C}}
+\newcommand{\mbD}{\mathbf{D}}
+\newcommand{\mbE}{\mathbf{E}}
+\newcommand{\mbF}{\mathbf{F}}
+\newcommand{\mbI}{\mathbf{I}}
+\newcommand{\mbH}{\mathbf{H}}
+\newcommand{\mbM}{\mathbf{M}}
+\newcommand{\mbN}{\mathbf{N}}
+\newcommand{\mbP}{\mathbf{P}}
+\newcommand{\mbQ}{\mathbf{Q}}
+\newcommand{\mbR}{\mathbf{R}}
+\newcommand{\smbR}{\mathbf{\scriptstyle R}}
+\newcommand{\smbV}{\mathbf{\scriptstyle V}}
+\newcommand{\mbS}{\mathbf{S}}
+\newcommand{\mbT}{\mathbf{T}}
+\newcommand{\mbX}{\mathbf{X}}
+\newcommand{\mbW}{\mathbf{W}}
+\newcommand{\smbX}{\mathbf{\scriptstyle X}}
+\newcommand{\mbV}{\mathbf{V}}
+\newcommand{\mbZ}{\mathbf{Z}}
+\newcommand{\mbY}{\mathbf{Y}}
+\newcommand{\smbZ}{\ensuremath{\mbox{\boldmath $\scriptstyle Z$}}}
+\newcommand{\mbSigma}{\ensuremath{\mbox{\boldmath$\Sigma$}}}
+\newcommand{\smbSigma}{\ensuremath{\mbox{\boldmath$\scriptstyle \Sigma$}}}
+\newcommand{\mbLambda}{\ensuremath{\mbox{\boldmath$\Lambda$}}}
+\newcommand{\mbUpsilon}{\ensuremath{\mbox{\boldmath$\Upsilon$}}}
+\newcommand{\mbOmega}{\ensuremath{\mbox{\boldmath$\Omega$}}}
+\newcommand{\smbOmega}{\ensuremath{\mbox{\boldmath$\scriptstyle \Omega$}}}
+\newcommand{\mbPhi}{\ensuremath{\mbox{\boldmath$\Phi$}}}
+\newcommand{\mbPi}{\ensuremath{\mbox{\boldmath$\Pi$}}}
+\newcommand{\mbPsi}{\ensuremath{\mbox{\boldmath$\Psi$}}}
+\newcommand{\mbGamma}{\ensuremath{\mbox{\boldmath$\Gamma$}}}
+\newcommand{\bftheta}{\ensuremath{\mbox{\boldmath$\theta$}}}
+\newcommand{\sbftheta}{\ensuremath{\mbox{\boldmath$\scriptstyle \theta$}}}
+\newcommand{\bfmu}{\ensuremath{\mbox{\boldmath$\mu$}}}
+\newcommand{\sbfmu}{\ensuremath{\mbox{\boldmath$\scriptstyle \mu$}}}
+\newcommand{\bfiota}{\ensuremath{\mbox{\boldmath$\iota$}}}
+\newcommand{\sbfiota}{\ensuremath{\mbox{\boldmath$\scriptstyle \iota$}}}
+\newcommand{\bfpsi}{\ensuremath{\mbox{\boldmath$\psi$}}}
+\newcommand{\sbfpsi}{\ensuremath{\mbox{\boldmath$\scriptstyle \psi$}}}
+\newcommand{\bfphi}{\ensuremath{\mbox{\boldmath$\phi$}}}
+\newcommand{\sbfphi}{\ensuremath{\mbox{\boldmath$\scriptstyle \phi$}}}
+\newcommand{\bfkappa}{\ensuremath{\mbox{\boldmath$\kappa$}}}
+\newcommand{\bfvarphi}{\ensuremath{\mbox{\boldmath$\varphi$}}}
+\newcommand{\sbfvarphi}{\ensuremath{\mbox{\boldmath$\scriptstyle \varphi$}}}
+\newcommand{\bfnu}{\ensuremath{\mbox{\boldmath$\nu$}}}
+\newcommand{\bfpi}{\ensuremath{\mbox{\boldmath$\pi$}}}
+\newcommand{\sbfpi}{\ensuremath{\mbox{\boldmath$\scriptstyle \pi$}}}
+\newcommand{\bfepsilon}{\ensuremath{\mbox{\boldmath$\epsilon$}}}
+\newcommand{\bfupsilon}{\ensuremath{\mbox{\boldmath$\upsilon$}}}
+\newcommand{\bfvarepsilon}{\ensuremath{\mbox{\boldmath$\varepsilon$}}}
+\newcommand{\bfbeta}{\ensuremath{\mbox{\boldmath$\beta$}}}
+\newcommand{\sbfbeta}{\ensuremath{\mbox{\boldmath$\scriptstyle \beta$}}}
+\newcommand{\bfeta}{\ensuremath{\mbox{\boldmath$\eta$}}}
+\newcommand{\sbfeta}{\ensuremath{\mbox{\boldmath$\scriptstyle \eta$}}}
+\newcommand{\swbfbeta}{\ensuremath{\mbox{\boldmath$\scriptstyle \widehat{\beta}$}}}
+\newcommand{\wbftheta}{\ensuremath{\mbox{\boldmath$\widehat{\theta}$}}}
+\newcommand{\wbfbeta}{\ensuremath{\widehat{\mbox{\boldmath$\beta$}}}}
+\newcommand{\bfgamma}{\ensuremath{\mbox{\boldmath$\gamma$}}}
+\newcommand{\bfdelta}{\ensuremath{\mbox{\boldmath$\delta$}}}
+\newcommand{\bflambda}{\ensuremath{\mbox{\boldmath$\lambda$}}}
+\newcommand{\sbflambda}{\ensuremath{\mbox{\boldmath$\scriptstyle \lambda$}}}
+\newcommand{\bfzeta}{\ensuremath{\mbox{\boldmath$\zeta$}}}
+\newcommand{\bfalpha}{\ensuremath{\mbox{\boldmath$\alpha$}}}
+\newcommand{\sbfalpha}{\ensuremath{\mbox{\boldmath$\scriptstyle \alpha$}}}
+\newcommand{\bfsigma}{\ensuremath{\mbox{\boldmath$\sigma$}}}
+\newcommand{\bfomega}{\ensuremath{\mbox{\boldmath$\omega$}}}
+\newcommand{\sbfomega}{\ensuremath{\mbox{\boldmath$\scriptstyle \omega$}}}
+\newcommand{\wsigma}{\ensuremath{\widehat{\sigma}}}
+\newcommand{\bfx}{\ensuremath{\mbox{\boldmath$x$}}}
+\newcommand{\sbfx}{\ensuremath{\mbox{\boldmath$\scriptstyle x$}}}
+\newcommand{\bfp}{\ensuremath{\mbox{\boldmath$p$}}}
+\newcommand{\bfy}{\ensuremath{\mbox{\boldmath$y$}}}
+\newcommand{\bfh}{\ensuremath{\mbox{\boldmath$h$}}}
+\newcommand{\wbfy}{\ensuremath{\widehat{\mbox{\boldmath$y$}}}}
+\newcommand{\bfz}{\ensuremath{\mbox{\boldmath$z$}}}
+\newcommand{\sbfz}{\ensuremath{\mbox{\boldmath$\scriptstyle z$}}}
+\newcommand{\bfu}{\ensuremath{\mbox{\boldmath$u$}}}
+\newcommand{\wbfu}{\ensuremath{\widehat{\mbox{\boldmath$u$}}}}
+\newcommand{\bfw}{\ensuremath{\mbox{\boldmath$w$}}}
+\newcommand{\sbfw}{\ensuremath{\mbox{\boldmath$\scriptstyle w$}}}
+\newcommand{\bfr}{\ensuremath{\mbox{\boldmath$r$}}}
+\newcommand{\sbfr}{\ensuremath{\mbox{\boldmath$\scriptstyle r$}}}
+\newcommand{\sbfp}{\ensuremath{\mbox{\boldmath$\scriptstyle p$}}}
+\newcommand{\bfs}{\ensuremath{\mbox{\boldmath$s$}}}
+\newcommand{\bfq}{\ensuremath{\mbox{\boldmath$q$}}}
+\newcommand{\sbfs}{\ensuremath{\mbox{\boldmath$\scriptstyle s$}}}
+\newcommand{\bfe}{\ensuremath{\mbox{\boldmath$e$}}}
+\newcommand{\sbfe}{\ensuremath{\mbox{\boldmath$\scriptstyle e$}}}
+\newcommand{\bff}{\ensuremath{\mbox{\boldmath$f$}}}
+\newcommand{\bfg}{\ensuremath{\mbox{\boldmath$g$}}}
+\newcommand{\sbff}{\ensuremath{\mbox{\boldmath$\scriptstyle f$}}}
+\newcommand{\bfa}{\ensuremath{\mbox{\boldmath$a$}}}
+\newcommand{\bfb}{\ensuremath{\mbox{\boldmath$b$}}}
+\newcommand{\bfc}{\ensuremath{\mbox{\boldmath$c$}}}
+\newcommand{\bfm}{\ensuremath{\mbox{\boldmath$m$}}}
+\newcommand{\sbfm}{\ensuremath{\mbox{\boldmath$\scriptstyle m$}}}
+\newcommand{\bfv}{\ensuremath{\mbox{\boldmath$v$}}}
+\newcommand{\sbfv}{\ensuremath{\mbox{\boldmath$\scriptstyle v$}}}
+\newcommand{\bft}{\ensuremath{\mbox{\boldmath$t$}}}
+\newcommand{\sbft}{\ensuremath{\mbox{\boldmath$\scriptstyle t$}}}
+\newcommand{\bfzero}{\textbf{0}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcounter{esempio}
+\renewcommand{\theesempio}{\arabic{esempio}}
+\newenvironment{esempio}{\refstepcounter{esempio}\begin{sloppypar}
+\vspace{0.5cm}\noindent\scshape Esempio \upshape\theesempio. }{
+\hspace*{\fill}$\Box$\vspace{0.6cm}\end{sloppypar}}
+
+\newcounter{ipotesi}
+\renewcommand{\theipotesi}{\arabic{ipotesi}}
+\newenvironment{ipotesi}{\begin{quote} \refstepcounter{ipotesi}
+\scshape Ipotesi \upshape\theipotesi. }{\hspace*{\fill}$\triangleleft$
+\end{quote}}
+
+\newcounter{proprieta}
+\renewcommand{\theproprieta}{\arabic{proprieta}}
+\newenvironment{proprieta}{\begin{quote}\refstepcounter{proprieta}
+\scshape Propriet\`{a} \upshape\theproprieta. }{\hspace*{\fill}$\triangleleft$
+\end{quote}}
+
+\newcounter{test}
+\renewcommand{\thetest}{\arabic{test}}
+\newcommand{\test}{\refstepcounter{test}\ensuremath{\xi_{\thetest}}}
+
+\newenvironment{listprop}{\begin{enumerate}
+\renewcommand{\labelenumi}{\emph{(}\roman{enumi}\emph{)}}}{\end{enumerate}}
+
+\newlength{\fntxvi} \newlength{\fntxvii}
+\newcommand{\ia}[1]
+{{\fontencoding{OMS}\fontfamily{cmsy}\selectfont
+  \fntxvi\the\fontdimen16\font
+  \fntxvii\the\fontdimen17\font
+  \fontdimen16\font=2.4pt \fontdimen17\font=2.4pt
+  \ensuremath{\mbox{$#1$}}
+  \fontencoding{OMS}\fontfamily{cmsy}\selectfont
+  \fontdimen16\font=\fntxvi \fontdimen17\font=\fntxvii}}
+
+\newcommand{\il}[1]
+{{\fontencoding{OMS}\fontfamily{cmsy}\selectfont
+  \fntxvi\the\fontdimen16\font
+  \fntxvii\the\fontdimen17\font
+  \fontdimen16\font=3.3pt \fontdimen17\font=3.3pt
+  \ensuremath{\mbox{$#1$}}
+  \fontencoding{OMS}\fontfamily{cmsy}\selectfont
+  \fontdimen16\font=\fntxvi \fontdimen17\font=\fntxvii}}
+
+\newcounter{saveeqn}
+\newcommand{\alphaeqn}{\setcounter{saveeqn}{\value{equation}}
+\stepcounter{saveeqn}\setcounter{equation}{0}
+\renewcommand{\theequation}
+      {\mbox{\arabic{saveeqn}\alph{equation}}}}
+\newcommand{\reseteqn}{\setcounter{equation}{\value{saveeqn}}
+\renewcommand{\theequation}{\arabic{equation}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
