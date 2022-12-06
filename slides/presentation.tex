@@ -213,7 +213,14 @@
 \title{Machine Learning - Crash Course}
 \author{Daniele Maddaluno}
 %\institute{ShareLaTeX}
-\date{2022-2023}
+\newcommand\yearnext{\advance\year by 1 \the\year\advance\year by -1}
+\newcommand\yearprev{\advance\year by -1 \the\year\advance\year by +1}
+\ifthenelse{\month>8}{
+\newcommand\academicyear{\the\year/\yearnext}	
+}{
+\newcommand\academicyear{\yearprev/\the\year}	
+}
+\date{\academicyear}
 
 
 % Install pygmentize (for minted):
