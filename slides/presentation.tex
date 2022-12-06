@@ -1,28 +1,20 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Beamer Presentation (https://de.overleaf.com/learn/latex/Beamer)
-% LaTeX Template
-% Version 1.0 (10/11/12)
-%
-% This template has been downloaded from:
-% http://www.LaTeXTemplates.com
-%
-% License:
-% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
-% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Install pygmentize (for minted):
+% easy_install no longer exists, it was replaced by pip install.
 
-% Slides Pastorello: solo 1,3,4,6
+% - Method 1:
+% brew install python
+% pip3 install Pygments (or with brew, easy_install was replaced by pip install)
+% brew install pygments
+%
+% % https://tex.stackexchange.com/a/62003/69362
+% which pygmentize --> take path and use below as first parameter
+% sudo cp /opt/homebrew/bin/pygmentize /usr/local/bin/pygmentize
 
-% \label{subsection:loss}
-% \ref{subsection:loss}
- 
-%----------------------------------------------------------------------------------------
-%	PACKAGES AND THEMES
-%----------------------------------------------------------------------------------------
-% README
-% README
-% README
-% Install pygmentize --> sudo easy_install Pygments
+
+% - Method 2:
+% sudo easy_install Pygments
+
+
 \documentclass{beamer}
 \usepackage [italian]{babel}
 \usepackage [utf8]{inputenc}
@@ -154,10 +146,6 @@
 \usepackage{tikz,lipsum,lmodern}
 \usepackage[most]{tcolorbox} 
 
-%\begin{tcolorbox}[colback=yellow!10,colframe=blue!40!black!60]
-%  My box
-%\end{tcolorbox}
-
 
 % https://www.researchgate.net/publication/341380597_Insert_GIF_in_a_LaTeX_Beamer_Presentation
 % options --> https://texblog.org/2018/03/05/the-animate-package/
@@ -223,22 +211,6 @@
 \date{\academicyear}
 
 
-% Install pygmentize (for minted):
-% easy_install no longer exists, it was replaced by pip install.
-
-% - Method 1:
-% brew install python
-% pip3 install Pygments (or with brew, easy_install was replaced by pip install)
-% brew install pygments
-%
-% % https://tex.stackexchange.com/a/62003/69362
-% which pygmentize --> take path and use below as first parameter
-% sudo cp /opt/homebrew/bin/pygmentize /usr/local/bin/pygmentize
-
-
-% - Method 2:
-% sudo easy_install Pygments
-
 \begin{document}
 
 \begin{frame}
@@ -257,24 +229,6 @@
 %	PRESENTATION SLIDES 
 %--------------------------------------------------
 
-% \section[Questo va nella striscia in alto a sinistra della slide]{Questo va nell'indice}
-% \subsection[Questo va nella striscia in alto a destra della slide]{Questo va nell'indice}
-% \subsubsection{Questo va nell'indice}
- 
-% Quote box:
-%\begin{block}{}
-%  	{\large ``To be, or not to be: that is the question.''}
-%  	\vskip5mm
-%	\hspace*\fill{\small--- William Shakespeare, Hamlet}
-%\end{block}
-
-% Center block 
-% http://www.texfaq.org/FAQ-wideflt
-% \makebox[\textwidth]{$\textbf{x}_{\textbf{1}}, \textbf{x}_{\textbf{2}},..., \textbf{x}_{\textbf{N}}$}
-
-% Table colored blocks:
-% https://texblog.org/2017/12/12/color-table-series-part-1-introduction-colortbl-package/ 
-
 \include{1_intro}
 \include{2_glossary}
 
@@ -284,21 +238,7 @@
 
 \include{4_unsupervised/4_unsupervised}
 \include{5_supervised/5_supervised}
-%\include{99_old_misuraca_trash}
 \input{6_summary/6_summary}
 
 
 \end{document}
-
-
-
-%\begin{table}[]
-%\centering
-%\begin{tabular}{lcl}
-%%\hline
-%\scalebox{1}{$dr_{t} = (\hat{a} -  \hat{b}r_{t}) dt + \hat{\sigma} dw_{t}$} & $\color{red} \mathbf{\Rightarrow}$ & \scalebox{1.2}{$\pmb{dr_{t} = a r_{t} dt + \sigma dw_{t}}$}  \\ %\hline
-%& & \\
-% \scalebox{0.85}{$B(t,T) = \frac{1}{\hat{b}}\bigg[1 - e^{-\hat{b}(T-t)}\bigg]$} & $\color{red} \mathbf{\Rightarrow}$ & \scalebox{1}{$\pmb{B(t,T) = \frac{1}{a}\bigg[e^{a(T-t)} - 1\bigg]}$}  \\ %\hline
-% \scalebox{0.85}{$A(t,T) = \int_t^T { \bigg[ \frac{\hat{\sigma}^2}{2} B^2(s,T) - \hat{a}B(s,T) \bigg] ds}$} & $\color{red}\mathbf{\Rightarrow}$ & \scalebox{1}{$\pmb{A(t,T) = \frac{\sigma^2}{2} \int_t^T {B^2(s,T)ds}}$} \\ %\hline
-%\end{tabular}
-%\end{table}
